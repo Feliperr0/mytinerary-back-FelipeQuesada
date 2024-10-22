@@ -9,7 +9,8 @@ let schema = new Schema({
   photo: { type: String, required: true },
   attractions: { type: [String], required: true },
   description: { type: String, required: true },
-  localCurrency: { type: String, required: true }
+  localCurrency: { type: String, required: true },
+  continent: { type: String, required: true },
 }, {
   timestamps: true
 });

@@ -8,8 +8,10 @@ npm install express
 npm install --save-dev nodemon
 npm install dotenv
 npm install mongoose
+npm i cors 
+npm i morgan 
 
 Crear archivo .env y configurar
-Port =8080
+Port = 8080
 
-password = en la nota de la entrega de plataforma mindhub
+llave al servidor URI_SERVER = Se encuentra en la nota de la entrega de plataforma mindhub
