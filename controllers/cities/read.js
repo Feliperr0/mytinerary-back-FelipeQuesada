@@ -8,11 +8,12 @@ let allCities = async (req, res) => {
 
         })
     } catch (error) {
-        return res.status(500).json({
-            response: error
-        })
+       next(error)
     }
 }
+
+
+
 
 const getCityById = async (req, res) => {
     try {
@@ -27,7 +28,7 @@ const getCityById = async (req, res) => {
         }
         res.status(200).json(city);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+       next (error)
     }
 };
 
