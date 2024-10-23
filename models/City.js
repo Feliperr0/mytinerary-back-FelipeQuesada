@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose';
 let collection = 'cities';
 
 let schema = new Schema({
-  _id: { type: String, required: true },
+  _id: { type: Number, required: true },
   country: { type: String, required: true },
   city: { type: String, required: true },
   photo: { type: String, required: true },
