@@ -14,10 +14,10 @@ let allCities = async (req, res) => {
 
 let citiesFilter = async (req, res, next) => {
     try {
-        let { country, continent, city } = req.query;
+        let { country, continent } = req.query;
         console.log('Country:', country);
         console.log('Continent:', continent);
-        console.log('City:', city);
+    
 
         let query = {};
 
@@ -31,9 +31,7 @@ let citiesFilter = async (req, res, next) => {
             } else {
                 query.continent = { $regex: continent, $options: 'i' };
             }
-        }
-
-       
+        }  
 
         let all = await City.find(query);
         return res.status(200).json({ cities: all });
@@ -43,22 +41,14 @@ let citiesFilter = async (req, res, next) => {
 };
 
 
-
-const getCityById = async (req, res) => {
+const getCityById = async (req, res, next) => {
     try {
-        const id = Number(req.params.id);
-        if (isNaN(id)) {
-            return res.status(400).json({ message: 'Invalid ID format, please enter a valid number.' });
-        }
-
-        const city = await City.findById(id);
-        if (!city) {
-            return res.status(404).json({ message: 'City not found' });
-        }
-        res.status(200).json(city);
+      res.status(200).json(req.city);
     } catch (error) {
-        next(error)
+      next(error);
     }
-};
+  };
+  
+
 
 export { allCities, getCityById, citiesFilter }
