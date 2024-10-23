@@ -18,6 +18,7 @@ server.use(cors())
 server.use (morgan('dev'))
 
 server.use('/api', indexRouter)
+
 server.use(not_found_handler)
 server.use(bad_request)
 server.use(error_handler)
