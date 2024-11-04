@@ -1,24 +1,18 @@
 import City from "../../models/City.js";
+import "../../models/Itinerary.js";
 
-let allCities = async (req, res) => {
+const allCities = async (req, res, next) => {
     try {
-        let all = await City.find()
-        return res.status(200).json({
-            cities: all
-
-        })
+        let all = await City.find().populate('itinerary', '_id photo accountName price tripDuration likes hashtags').exec();
+        return res.status(200).json({ cities: all });
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 
-let citiesFilter = async (req, res, next) => {
+const citiesFilter = async (req, res, next) => {
     try {
         let { country, continent } = req.query;
-        console.log('Country:', country);
-        console.log('Continent:', continent);
-    
-
         let query = {};
 
         if (country) {
@@ -40,15 +34,18 @@ let citiesFilter = async (req, res, next) => {
     }
 };
 
-
 const getCityById = async (req, res, next) => {
     try {
-      res.status(200).json(req.city);
+      const city = await City.findById(req.params.id).populate('itinerary', '_id photo accountName price tripDuration likes hashtags').exec();
+      res.status(200).json(city);
     } catch (error) {
       next(error);
     }
   };
   
+  export { allCities, getCityById, citiesFilter };
+  
+  
 
+  
 
-export { allCities, getCityById, citiesFilter }
