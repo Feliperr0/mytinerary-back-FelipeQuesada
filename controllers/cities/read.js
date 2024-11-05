@@ -25,7 +25,7 @@ const citiesFilter = async (req, res, next) => {
             } else {
                 query.continent = { $regex: continent, $options: 'i' };
             }
-        }  
+        }
 
         let all = await City.find(query);
         return res.status(200).json({ cities: all });
@@ -36,16 +36,20 @@ const citiesFilter = async (req, res, next) => {
 
 const getCityById = async (req, res, next) => {
     try {
-      const city = await City.findById(req.params.id).populate('itinerary', '_id photo accountName price tripDuration likes hashtags').exec();
-      res.status(200).json(city);
+        const city = await City.findById(req.params.id).populate('itinerary', '_id photo accountName price tripDuration likes hashtags').exec();
+        res.status(200).json(city);
     } catch (error) {
-      next(error);
+        next(error);
     }
-  };
-  
-  export { allCities, getCityById, citiesFilter };
-  
-  
+};
 
-  
+const getCityItineraries = async (req, res, next) => { 
+    try { res.status(200).json(req.city.itinerary); } 
+    catch (error) { next(error); } };
+
+export { allCities, getCityById, citiesFilter, getCityItineraries };
+
+
+
+
 
