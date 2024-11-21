@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose';
 
-let collection = 'cities';
+let collection = 'City';
+
 let schema = new Schema({
   country: { type: String, required: true, index: true },
   city: { type: String, required: true, index: true },
