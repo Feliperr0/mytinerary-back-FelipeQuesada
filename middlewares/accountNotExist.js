@@ -5,10 +5,11 @@ export default async (req, res, next) => {
         let account = await User.findOne({ email: req.body.email });
         if (account) {
             req.user = {
-                account: account.email,
+                email: account.email,
                 password: account.password,
                 role: account.role,
-                photo: account.photo
+                photo: account.photo,
+                name: account.name // Asegúrate de incluir el nombre del usuario
             };
             return next();
         }
