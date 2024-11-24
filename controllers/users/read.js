@@ -13,15 +13,18 @@ let allUser = async (req, res, next) => {
 
 let userById = async (req, res, next) => {
     try {
-        let idQuery = req.query.id;
-        let all = await User.findById(idQuery);
+
         return res.status(200).json({
-            response: all
+            succes: true,
+            response: req.user
         });
     } catch (error) {
         next(error)
     }
 }
+
+
+
 let usersByManyIds = async (req, res, next) => {
     try {
         let idsQuery = req.query.ids;
@@ -29,7 +32,7 @@ let usersByManyIds = async (req, res, next) => {
         let allUsers = await User.find({
             '_id': { $in: idsArray }
         });
-        
+
         return res.status(200).json({
             response: allUsers
         });

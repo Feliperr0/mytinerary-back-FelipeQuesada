@@ -4,9 +4,9 @@ import accountExist from '../middlewares/accountExist.js';
 import createHash from '../middlewares/createHash.js';
 import validator from '../middlewares/validator.js';
 import schemaUsersCreated from '../schemas/register/users.js';
-import { allUser } from '../controllers/users/read.js';
-import validateToken from '../middlewares/validateToken.js';
-import validateTokenEndpoint from '../controllers/auth/validateTokenEndpoint.js';
+import { allUser, userById } from '../controllers/users/read.js';
+import passport from '../middlewares/passport.js';
+
 
 const router = Router();
 
@@ -14,6 +14,6 @@ router.post('/register', validator(schemaUsersCreated), accountExist, createHash
 router.get('/all', allUser);
 
 // Nueva ruta para validar el token
-router.get('/validatetoken', validateToken, validateTokenEndpoint);
+router.get('/validatetoken', passport.authenticate('jwt', {session: false}) , userById);
 
 export default router;

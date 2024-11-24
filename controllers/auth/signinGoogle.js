@@ -7,10 +7,13 @@ export default async (req, res, next) => {
             { online: true }
         )
         console.log(req)
+        console.log("TOKEN", req.token)
 
-        return res.redirect('https://localhost:8080/home?token:' + req.token)
+        return res.redirect('http://localhost:5173/cities/?token=' + req.token + '')
 
-    }  catch (error) {
+    } catch (error) {
         next(error)
     }
 }
+
+

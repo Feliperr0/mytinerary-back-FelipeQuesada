@@ -14,7 +14,7 @@ router.post('/signin', accountNotExist, isValidPassword, generateToken, signIn);
 router.post('/signout', passport.authenticate('jwt', { session: false }), signOut);
 
 // Ruta para iniciar sesión con Google
-router.get('/signin/google', passportGoogle.authenticate('google', { scope: ['profile', 'email'], session: false }), signinGoogle);
-router.get('/signin/google/callback', passportGoogle.authenticate('google', { session: false, failureRedirect: '/login' }), generateToken, signIn);
+router.get('/signin/google', passportGoogle.authenticate('google', {session: false , scope: ['profile', 'email'] }));
+router.get('/signin/google/callback', passportGoogle.authenticate('google', { session: false, failureRedirect: '/login' }), generateToken, signinGoogle);
 
 export default router;

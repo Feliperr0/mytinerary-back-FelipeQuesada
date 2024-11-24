@@ -3,17 +3,19 @@ import User from "../../models/User.js";
 const validateTokenEndpoint = async (req, res, next) => {
     try {
         // Actualizamos el estado del usuario a online
-        await User.findOneAndUpdate(
+        const updatedUser = await User.findOneAndUpdate(
             { email: req.user.email },
-            { online: true }
-        )
+            { online: true },
+            { new: true } // Esto devuelve el usuario actualizado
+        );
 
         return res.status(200).json({
             success: true,
             message: "Valid Token.",
             user: {
-                email: req.user.email,
-                photo: req.user.photo // Asumiendo que `photo` es parte del token decodificado
+                name: updatedUser.name,
+                email: updatedUser.email,
+                photo: updatedUser.photo
             }
         });
 
