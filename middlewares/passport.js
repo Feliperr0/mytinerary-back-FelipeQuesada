@@ -14,10 +14,10 @@ export default passport.use(
                 if (user) {
                     return done(null, user);
                 } else {
-                    return done(null, false); // Cambiar a false
+                    return done(null, false);
                 }
             } catch (error) {
-                return done(error, false); // Cambiar a false
+                return done(error, false);
             }
         }
     )
