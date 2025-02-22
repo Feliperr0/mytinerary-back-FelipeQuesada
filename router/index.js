@@ -9,6 +9,6 @@ const router = Router()
 
 router.use('/cities', citiesRouter)
 router.use('/itineraries', passport.authenticate('jwt', { session: false }), itinerariesRouter)
-router.use('/users', passport.authenticate('jwt', { session: false }),  usersRouter)
+router.use('/users', usersRouter)
 router.use('/auth', authRouter)
 export default router
