@@ -6,8 +6,6 @@ export default async (req, res, next) => {
             { email: req.user.email },
             { online: true }
         )
-        console.log(req)
-        console.log("TOKEN", req.token)
 
         return res.redirect('http://localhost:5173/cities/?token=' + req.token + '')
 

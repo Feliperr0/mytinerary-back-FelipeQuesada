@@ -13,10 +13,10 @@ const router = express.Router();
 router.get('/all', allCities);
 router.get('/id/:id',passport.authenticate('jwt', { session: false }), validate_Id_Format, check_If_City_Exists, getCityById);
 router.get('/find', passport.authenticate('jwt', { session: false }), citiesFilter); //usaqueryparams de frontend
-router.post('/create/city', createCity);
-router.post('/create/cities', createCities);
-router.put('/update/:id', validate_Id_Format, check_If_City_Exists, updateCity);
-router.delete('/delete/:id', validate_Id_Format, check_If_City_Exists, deleteCity);
-router.get('/:cityId/itineraries', validate_city_itineraries, check_city, getCityItineraries);
+router.post('/create/city', passport.authenticate('jwt', { session: false }), createCity);
+router.post('/create/cities', passport.authenticate('jwt', { session: false }), createCities);
+router.put('/update/:id', passport.authenticate('jwt', { session: false }), validate_Id_Format, check_If_City_Exists, updateCity);
+router.delete('/delete/:id', passport.authenticate('jwt', { session: false }), validate_Id_Format, check_If_City_Exists, deleteCity);
+router.get('/:cityId/itineraries', passport.authenticate('jwt', { session: false }), validate_city_itineraries, check_city, getCityItineraries);
 
 export default router;

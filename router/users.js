@@ -11,7 +11,7 @@ import passport from '../middlewares/passport.js';
 const router = Router();
 
 router.post('/register', validator(schemaUsersCreated), accountExist, createHash, registerUser);
-router.get('/all', allUser);
+router.get('/all', passport.authenticate('jwt', { session: false }), allUser);
 
 // Nueva ruta para validar el token
 router.get('/validatetoken', passport.authenticate('jwt', {session: false}) , userById);

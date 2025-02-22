@@ -10,7 +10,7 @@ export default passport.use(
             callbackURL: process.env.GOOGLE_URI_BACK
         },
         async (accessToken, refreshToken, profile, done) => {
-            console.log(profile);
+          
 
             try {
                 // Buscar si el usuario se encuentra en la base de datos
